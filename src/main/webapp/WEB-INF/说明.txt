@@ -5,3 +5,5 @@
 
  2、邮件激活：
 为了保证用户填写的邮箱是正确的，将来可以推广一些宣传信息到用户邮箱
+用户表中有字段code记录激活码，以及字段status记录激活状态(Y/N)
+return UUID.randomUUID().toString().replace("-",""); // 激活码
