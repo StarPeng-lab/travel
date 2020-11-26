@@ -16,4 +16,11 @@ public interface UserService {
      * @return
      */
     boolean active(String code);
+
+    /**
+     * 根据用户名和密码登录
+     * @param user
+     * @return
+     */
+    User login(User user);
 }

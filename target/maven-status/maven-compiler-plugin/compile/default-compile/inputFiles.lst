@@ -9,6 +9,7 @@ D:\a_doc\IdeaProjects\travel\src\main\java\cn\itcast\travel\domain\User.java
 D:\a_doc\IdeaProjects\travel\src\main\java\cn\itcast\travel\util\MailUtils.java
 D:\a_doc\IdeaProjects\travel\src\main\java\cn\itcast\travel\web\servlet\ActiveUserServlet.java
 D:\a_doc\IdeaProjects\travel\src\main\java\cn\itcast\travel\domain\Category.java
+D:\a_doc\IdeaProjects\travel\src\main\java\cn\itcast\travel\web\servlet\LoginServlet.java
 D:\a_doc\IdeaProjects\travel\src\main\java\cn\itcast\travel\util\Md5Util.java
 D:\a_doc\IdeaProjects\travel\src\main\java\cn\itcast\travel\web\servlet\CheckCodeServlet.java
 D:\a_doc\IdeaProjects\travel\src\main\java\cn\itcast\travel\web\filter\CharchaterFilter.java

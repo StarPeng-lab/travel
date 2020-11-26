@@ -15,9 +15,34 @@
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
       <!--导入angularJS文件-->
-    <script src="js/angular.min.js"></script>
+    <!--<script src="js/angular.min.js"></script>-->
 	<!--导入jquery-->
 	<script src="js/jquery-3.3.1.js"></script>
+	<script>
+		$(function(){
+			//将提交按钮绑定单击事件
+			$("#submit").click(function(){
+				alert("1");
+				//发送ajax请求，提交表单数据
+				$.post("loginServlet",$("#loginForm").serialize(),function(data){
+					alert("2111");
+					alert(data.flag);
+					alert(data.errorMsg);
+					if(data.flag){
+						//登录成功
+						alert("3111");
+						$("#errorMsg").html("");
+						location.href="index.html";
+					}else{
+						//登录失败
+						$("#errorMsg").html(data.errorMsg);
+					}
+
+				})
+			})
+
+		})
+	</script>
 </head>
 
 <body>
@@ -48,18 +73,19 @@
 						//图片点击事件
 						function changeCheckCode(img) {
 							img.src="checkCode?"+new Date().getTime();
+							$("#errorMsg").html("");
 						}
 					</script>
 			</div>
 			<div class="submit_btn">
-        				<button type="button">登录</button>
+        				<button type="button" id="submit">登录</button>
         				<div class="auto_login">
         					<input type="checkbox" name="" class="checkbox">
         					<span>自动登录</span>
         				</div>        				
         			</div>        			       		
         		</form>
-        		<div class="reg">没有账户？<a href="javascript:;">立即注册</a></div>
+        		<div class="reg">没有账户？<a href="register.html">立即注册</a></div>
         	</div>
         </div>
     </section>

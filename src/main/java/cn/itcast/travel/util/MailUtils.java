@@ -11,8 +11,8 @@ import java.util.Properties;
  * 这里用到的电子邮件协议是 SMTP ，即 Simple Mail Transfer Protocol 简单邮件传输协议
  */
 public final class MailUtils {
-    private static final String USER = "2226275523@qq.com"; // 发件人称号，同邮箱地址
-    private static final String PASSWORD = "ixgalvyyrhhleadj"; // 如果是qq邮箱可以使用登录密码，如果是163邮箱需要开启客户端授权码
+    private static final String USER = ""; // 发件人称号，同邮箱地址
+    private static final String PASSWORD = ""; // 如果是qq邮箱可以使用登录密码，如果是163邮箱需要开启客户端授权码
 
     /**
      *
