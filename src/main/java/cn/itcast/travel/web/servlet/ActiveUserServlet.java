@@ -14,7 +14,9 @@ import java.io.IOException;
 public class ActiveUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1、获得激活码
-        String code = request.getParameter("code"); //这里的code是UserServiceImpl类的regist方法中设置的邮件内的路径传来的code
+        //String code = request.getParameter("code"); //这里的code是UserServiceImpl类的regist方法中设置的邮件内的路径传来的code
+        String code = (String) request.getSession().getAttribute("code"); //这里的code是RegistServlet中存储的session的键
+
         if(code != null){
             //2、调用service完成激活
             UserService service = new UserServiceImpl();

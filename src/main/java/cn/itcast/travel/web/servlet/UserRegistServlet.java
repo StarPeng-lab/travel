@@ -66,7 +66,10 @@ public class UserRegistServlet extends HttpServlet {
         response.setContentType("application/json;charset=utf-8");
         response.getWriter().write(json);
 
-
+        //demo:（由于邮箱有安全隐患，因此不走邮箱工具类，直接用session存储激活码，点击regist_html的链接即可激活）
+        if(flag){
+            request.getSession().setAttribute("code",user.getCode());
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
