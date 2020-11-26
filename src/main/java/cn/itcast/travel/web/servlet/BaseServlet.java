@@ -33,7 +33,7 @@ public class BaseServlet extends HttpServlet {
     }
 
     /**
-     *
+     *（封装抽取这两个方法）
      * 直接将传入的对象序列化为json，并写回客户端
      * @param obj
      */
