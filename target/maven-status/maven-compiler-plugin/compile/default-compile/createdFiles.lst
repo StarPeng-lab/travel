@@ -9,6 +9,7 @@ cn\itcast\travel\util\MailUtils$1.class
 cn\itcast\travel\dao\impl\UserDaoImpl.class
 cn\itcast\travel\util\UuidUtil.class
 cn\itcast\travel\web\servlet\UserRegistServlet.class
+cn\itcast\travel\web\servlet\FindUserServlet.class
 cn\itcast\travel\domain\Category.class
 cn\itcast\travel\web\servlet\ActiveUserServlet.class
 cn\itcast\travel\domain\Seller.class

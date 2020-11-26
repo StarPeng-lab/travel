@@ -51,18 +51,21 @@ public class LoginServlet extends HttpServlet {
         //3、调用serice层方法验证
         UserService service = new UserServiceImpl();
         User u = service.login(user);
-        //4、判断
+        //4、判断用户名或密码
         ResultInfo info = new ResultInfo();
         if(u == null){
             info.setFlag(false);
             info.setErrorMsg("用户名或密码错误！");
         }
+        //5、判断是否激活
         if(u != null && !"Y".equals(u.getStatus())){
             info.setFlag(false);
             info.setErrorMsg("用户邮箱未激活！");
         }
+        //6、判断登录成功
         if(u != null && "Y".equals(u.getStatus())){
             info.setFlag(true);
+            request.getSession().setAttribute("user",u); //在session中记录user
         }
 
         //5、响应ajax数据
