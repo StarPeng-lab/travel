@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 
         //5、响应ajax数据
         ObjectMapper mapper = new ObjectMapper();
-        response.setContentType("application/ajax;charset=utf-8");
+        response.setContentType("application/json;charset=utf-8");
         mapper.writeValue(response.getOutputStream(),info);
     }
 

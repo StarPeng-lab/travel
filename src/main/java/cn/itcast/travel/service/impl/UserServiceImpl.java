@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
         //激活邮件发送
         String content = "<a href='http://localhost/travel/activeUserServlet?code="+user.getCode()+"'>点击激活邮箱</a>";
-        MailUtils.sendMail(user.getEmail(),content,"激活邮件");
+        //MailUtils.sendMail(user.getEmail(),content,"激活邮件");
 
 
         return true;
