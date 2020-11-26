@@ -12,3 +12,7 @@ return UUID.randomUUID().toString().replace("-",""); // 激活码
 2.2、后来由于有邮箱安全隐患，于是改为直接在regist_ok.html点击激活即可：
 ActiveUserServlet.java,UserResistServelt.java,register_ok.html
 
+ 3、退出功能：
+session中存储了user对象，即表明用户登录；在LoginServlet.java中，存储了session的user键
+实现：访问servlet，将session销毁；跳转到登录页面
+
