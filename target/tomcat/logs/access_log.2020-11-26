@@ -93,3 +93,5 @@
 0:0:0:0:0:0:0:1 - - [26/Nov/2020:13:22:54 +0800] "POST /travel/loginServlet HTTP/1.1" 200 67 http-bio-80-exec-2 32
 0:0:0:0:0:0:0:1 - - [26/Nov/2020:13:23:05 +0800] "POST /travel/loginServlet HTTP/1.1" 200 76 http-bio-80-exec-2 4
 0:0:0:0:0:0:0:1 - - [26/Nov/2020:13:23:10 +0800] "GET /travel/checkCode?1606368189989 HTTP/1.1" 200 269 http-bio-80-exec-2 9
+0:0:0:0:0:0:0:1 - - [26/Nov/2020:13:23:45 +0800] "GET /travel/checkCode?1606368225831 HTTP/1.1" 200 258 http-bio-80-exec-2 7
+0:0:0:0:0:0:0:1 - - [26/Nov/2020:13:23:50 +0800] "POST /travel/loginServlet HTTP/1.1" 200 64 http-bio-80-exec-10 14

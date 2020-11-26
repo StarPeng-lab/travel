@@ -25,9 +25,10 @@ public class UserServiceImpl implements UserService {
         user.setStatus("N");//设置激活码
         dao.save(user);
 
-        //激活邮件发送
-        String content = "<a href='http://localhost/travel/activeUserServlet?code="+user.getCode()+"'>点击激活邮箱</a>";
+        //激活邮件发送 //不通过MailUtils工具类了，也不通过在邮件点击链接激活；直接在网页点击链接激活
+        //String content = "<a href='http://localhost/travel/activeUserServlet?code="+user.getCode()+"'>点击激活邮箱</a>";
         //MailUtils.sendMail(user.getEmail(),content,"激活邮件");
+
 
 
         return true;

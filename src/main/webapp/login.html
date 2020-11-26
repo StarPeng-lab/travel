@@ -22,15 +22,10 @@
 		$(function(){
 			//将提交按钮绑定单击事件
 			$("#submit").click(function(){
-				alert("1");
 				//发送ajax请求，提交表单数据
 				$.post("loginServlet",$("#loginForm").serialize(),function(data){
-					alert("2111");
-					alert(data.flag);
-					alert(data.errorMsg);
 					if(data.flag){
 						//登录成功
-						alert("3111");
 						$("#errorMsg").html("");
 						location.href="index.html";
 					}else{
