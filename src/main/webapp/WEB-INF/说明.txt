@@ -7,3 +7,8 @@
 为了保证用户填写的邮箱是正确的，将来可以推广一些宣传信息到用户邮箱
 用户表中有字段code记录激活码，以及字段status记录激活状态(Y/N)
 return UUID.randomUUID().toString().replace("-",""); // 激活码
+
+2.1、MailUtils工具类，ActiveUserServlet.java，UserServiceImpl.java,UserDaoImpl.java
+2.2、后来由于有邮箱安全隐患，于是改为直接在regist_ok.html点击激活即可：
+ActiveUserServlet.java,UserResistServelt.java,register_ok.html
+
