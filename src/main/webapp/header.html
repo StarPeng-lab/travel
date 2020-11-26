@@ -1,6 +1,6 @@
 <script>
     $(function(){
-        $.get("findUserServlet",{},function(data){
+        $.get("user/findOne",{},function(data){
             //data: {uid:1,username:'zhangsan',password:'123456',name:'李四',...}
             var msg = "欢迎回来，"+data.name;
             $("#s-username").html(msg);

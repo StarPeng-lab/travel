@@ -1,3 +1,4 @@
+ (一)用户模块：注册、激活、登录、退出
  1、异步提交表单：
 为了获取服务器响应的数据；
 由于web视图层采用html展示页面，而不是jsp，
@@ -16,3 +17,14 @@ ActiveUserServlet.java,UserResistServelt.java,register_ok.html
 session中存储了user对象，即表明用户登录；在LoginServlet.java中，存储了session的user键
 实现：访问servlet，将session销毁；跳转到登录页面
 
+(二)优化：抽取BaseServlet
+    好处：功能都在一个类中，抽取成一个模块，有些公共代码可以抽取出来复用，也简化了代码架构
+之前是一个servlet对应一个功能，比如登录功能，注册功能，激活功能，查找用户功能，退出功能，导致servlet的个数很多
+现在进行优化，将一个servlet对应一个模块，如用户模块，商品模块；每个模块下存放功能方法
+实现：* 定义BaseServlet继承HttpServlet，BaseServlet重写service()方法；
+       BaseServlet不需要被访问到，访问具体模块即可
+       每个模块都继承BaseServlet，如一个用户模块UserServlet；
+       将来UserServlet一被访问，就会执行父类BaseServlet的service方法
+     * UserServlet类的@WebServlet("/模块名/方法名")，可以直接访问到某类下的某方法
+       即通过request.getRequestURI()获得访问路径，并截取字符串获取方法名，之后调用反射获得方法对象并执行方法，即可实现
+       (有点框架的感觉了)

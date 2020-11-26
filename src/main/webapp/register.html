@@ -84,7 +84,7 @@
 						//用ajax的serialize方法，序列化 表单内容 为字符串 username=zhangsan&password=123
 						//$("form").serialze()，转为 key=value&key=value&... 形式
 						//提交数据写为$("#registerForm").serialize()，由于是通过表单对象调用的submit()，因此可以直接用this发送数据，this是js对象，要转为jq对象
-						$.post("userRegistServlet",$(this).serialize(),function(data){
+						$.post("user/regist",$(this).serialize(),function(data){
 							//处理服务器响应的数据data：{flag:true,errorMsg:"注册..."}
 							if(data.flag){//注册成功
 								$("#err").html("");
