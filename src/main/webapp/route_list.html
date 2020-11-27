@@ -31,8 +31,27 @@
                 }
                 var beforePage = '<li onclick="javascript:load('+cid+','+beforeNum+')" class="threeword"><a href="javascript:void(0)">上一页</a></li>';
                 lis += firstPage + beforePage;
-                for(var i = 1 ; i <= pb.totalPage ; i++) { //展示分页页码
 
+                //保证分页条一次只显示10个页码
+                var begin; //分页条开始位置
+                var end; //分页条结束位置
+                if(pb.totalPage < 10){
+                    begin = 1;
+                    end = pb.totalPage;
+                }else{
+                    begin = pb.currentPage-5; //保证前5后4 ，如选中6，则一行为2,3,4,5,6,[7],8,9,10,11
+                    end = pb.currentPage+4;
+                    if(begin < 1){ //如果前边不够4个，则后边补齐9个
+                        begin = 1 ;
+                        end = begin + 9;
+                    }
+                    if(end > pb.totalPage) { //如果后边不够5个，则前边补齐10个
+                        end = pb.totalPage;
+                        begin = end - 9 ;
+                    }
+                }
+                for(var i = begin ; i <= end ; i++){
+                    //for(var i = 1 ; i <= pb.totalPage ; i++) { //展示分页页码
                     var li ;
                     if(pb.currentPage == i){ //如果是当前页码，则给选中样式
                         li = '<li onclick="javascript:load('+cid+','+i+')" class="curPage"><a href="javascript:void(0)">'+i+'</a></li>';
@@ -41,6 +60,7 @@
                     }
                     lis += li;
                 }
+
                 //计算下一页页码
                 var nextNum = pb.currentPage+1;
                 if(pb.currentPage == pb.totalPage){
@@ -75,6 +95,9 @@
                     route_li += li;
                 }
                 $("#route_ul").html(route_li);
+
+                //定位到页面(0,272px)处-导航栏
+                window.scrollTo(0,272);
 
             })
 
