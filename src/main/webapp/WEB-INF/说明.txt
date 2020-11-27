@@ -17,7 +17,7 @@ ActiveUserServlet.java,UserResistServelt.java,register_ok.html
 session中存储了user对象，即表明用户登录；在LoginServlet.java中，存储了session的user键
 实现：访问servlet，将session销毁；跳转到登录页面
 
-(二)优化：抽取BaseServlet
+优化：抽取BaseServlet
     好处：功能都在一个类中，抽取成一个模块，有些公共代码可以抽取出来复用，也简化了代码架构
 之前是一个servlet对应一个功能，比如登录功能，注册功能，激活功能，查找用户功能，退出功能，导致servlet的个数很多
 现在进行优化，将一个servlet对应一个模块，如用户模块，商品模块；每个模块下存放功能方法
@@ -28,3 +28,12 @@ session中存储了user对象，即表明用户登录；在LoginServlet.java中�
      * UserServlet类的@WebServlet("/模块名/方法名")，可以直接访问到某类下的某方法
        即通过request.getRequestURI()获得访问路径，并截取字符串获取方法名，之后调用反射获得方法对象并执行方法，即可实现
        (有点框架的感觉了)
+
+(二)分类数据模块
+ 1、分类数据展示：在header.html窗口中，用js和jq在函数中拼接li，将tab_category表的数据展示出来
+    优化：由于每次页面加载后，都要请求category/findAll的findAll方法，重新请求数据库，对数据库的压力较大，
+         而分类的数据一般是不会变动的，因此采用对分类数据缓存优化，redis
+    即：在service层，先从redis中查询，再判断查出的集合中是否为空；
+       为空: 说明是第一次访问，于是查询数据库，并将数据存入redis中，返回集合；
+       不为空：不是第一次访问，直接返回集合；
+
