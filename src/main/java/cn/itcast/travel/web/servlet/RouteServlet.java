@@ -1,5 +1,10 @@
 package cn.itcast.travel.web.servlet;
 
+import cn.itcast.travel.domain.PageBean;
+import cn.itcast.travel.domain.Route;
+import cn.itcast.travel.service.RouteService;
+import cn.itcast.travel.service.impl.RouteServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +14,9 @@ import java.io.IOException;
 
 @WebServlet("/route/*")
 public class RouteServlet extends BaseServlet {
+
+    private RouteService service = new RouteServiceImpl();
+
     public void pageQuery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1、接收参数
         String currentPageStr = request.getParameter("currentPage"); //当前页码
@@ -34,6 +42,13 @@ public class RouteServlet extends BaseServlet {
         if(cidStr != null || cidStr.length() > 0){
             cid = Integer.parseInt(cidStr);
         }
+
+        //3、调用service层方法查询PageBean对象
+        PageBean<Route> pb = service.pageQuery(cid,currentPage,pageSize);
+
+        //4、将PageBean对象序列化为json，返回客户端
+        writeValue(pb,response); //调用BaseServlet封装的方法
+
 
     }
 
