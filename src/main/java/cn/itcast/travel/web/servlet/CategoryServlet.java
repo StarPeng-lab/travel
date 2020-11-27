@@ -25,14 +25,14 @@ public class CategoryServlet extends BaseServlet {
      * @throws ServletException
      * @throws IOException
      */
-    protected void findAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void findAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1、调用service查询所有
         List<Category> all = service.findAll();
         //2、将得到的数据序列化为json返回前台
         writeValue(all,response); //调用接口BaseServlet的方法
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 }
