@@ -39,5 +39,9 @@ session中存储了user对象，即表明用户登录；在LoginServlet.java中�
     排序：期望按数据库中的顺序取数，使用sortedsort排序查询
 
 (三)旅游路线模块
+由于前台页面都是html，无法像jsp那样通过el表达式和jstl，与后台交互数据，而是前台发送ajax请求到后台，后台发回json数据进行交互
+因此，像分页的页码等信息，以及搜索功能，都是通过ajax请求，将前台参数包裹在访问路径后,即【?参数名=参数值&参数名=参数值】,要么把这个值写在跳转链接里，要么写在$.get("",{},回调函数) 中
+当然，像注册页面，登录页面，可以直接用表单form传值，后台用request对象的方法接收，如：request.getParameter(String id_name)
+ 1、分页
  定义分页对象，让数据分页显示: 将数据封装到PageBean类中，组合类PageBean和Route
  按照类别表中的cid，不同的cid查询不同的数据返回
