@@ -39,5 +39,5 @@ session中存储了user对象，即表明用户登录；在LoginServlet.java中�
     排序：期望按数据库中的顺序取数，使用sortedsort排序查询
 
 (三)旅游路线模块
- 定义分页对象，让数据分页显示
+ 定义分页对象，让数据分页显示: 将数据封装到PageBean类中，组合类PageBean和Route
  按照类别表中的cid，不同的cid查询不同的数据返回
