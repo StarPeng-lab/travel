@@ -48,7 +48,7 @@ public class BaseServlet extends HttpServlet {
      * 将传入的对象序列化为json，并返回json数据，（这里没有将json写回客户端）
      * @param obj
      */
-    public String writeValueAsString(Object obj, HttpServletResponse response) throws JsonProcessingException {
+    public String writeValueAsString(Object obj) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(obj);
 
