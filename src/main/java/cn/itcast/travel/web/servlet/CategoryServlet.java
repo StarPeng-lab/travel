@@ -32,7 +32,4 @@ public class CategoryServlet extends BaseServlet {
         writeValue(all,response); //调用接口BaseServlet的方法
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
-    }
 }
