@@ -2,6 +2,10 @@ package cn.itcast.travel.domain;
 
 import java.util.List;
 
+/**
+ * 分页对象
+ * @param <T>
+ */
 public class PageBean<T> {
     private int totalCount; //总记录数
     private int totalPage; //总页数
