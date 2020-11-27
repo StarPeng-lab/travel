@@ -25,21 +25,21 @@ public class RouteServlet extends BaseServlet {
 
         //2、处理参数，转换为数据类型
         int currentPage = 0;
-        if(currentPageStr != null || currentPageStr.length() > 0){
+        if(currentPageStr != null && currentPageStr.length() > 0){
             currentPage = Integer.parseInt(currentPageStr);
         }else{
             currentPage = 1 ; //如果前台没有传递参数，则默认当前页码为1
         }
 
         int pageSize = 0;
-        if(pageSizeStr != null || pageSizeStr.length() > 0){
+        if(pageSizeStr != null && pageSizeStr.length() > 0){
             pageSize = Integer.parseInt(pageSizeStr);
         }else{
             pageSize = 5 ; //如果前台没有传递参数，则默认每页显示条数为5
         }
 
         int cid = 0;
-        if(cidStr != null || cidStr.length() > 0){
+        if(cidStr != null && cidStr.length() > 0){
             cid = Integer.parseInt(cidStr);
         }
 
