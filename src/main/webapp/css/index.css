@@ -19,7 +19,7 @@
 
 .jx_top {
 	margin-top: 35px;
-	border-bottom: 2px solid #ffc900;
+	border-bottom: 2px solid rgb(93, 151, 209);
 }
 .jx_tit, .jx_tabs {
 	float: left;
@@ -66,7 +66,7 @@
     font-size: 16px;
 }
 .jx_tabs .active span {
-	background: #ffc900;
+	background: rgb(93, 151, 209);
 	border:none;
 }
 .jx_tabs .active a{
