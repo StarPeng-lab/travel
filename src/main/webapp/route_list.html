@@ -9,27 +9,38 @@
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" href="css/search.css">
     <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/getParameter.js"></script>
     <script>
         $(function () {
-            var search = location.search; //获得浏览器访问路径中?后的所有内容,例：?cid=6
-            var cid = search.split("=")[1]; //?cid
-            load(cid); //不传currentPage，后台的servlet接受空值后会自动赋初始值1
+            /*var search = location.search; //获得浏览器访问路径中?后的所有内容,例：?cid=6 截取到 6 ； ?cid=6&rname= 截取到 6&rname
+            var cid = search.split("=")[1]; //截取到6*/
+            var cid = getParameter("cid");
+
+            //（header.html中的搜索功能）
+            var rname = getParameter("rname"); // js/getParameter.js下封装好的一个方法（可以用上面方式获得参数，也可以用这个方法获得参数）
+            if(rname != null && rname.length > 0){ //rname不为null或者""
+                rname = window.decodeURIComponent(rname); //将从header.html中浏览器路径中传递来的参数rname进行解码
+            }
+
+            load(cid,null,rname); //不传currentPage，后台的servlet接受空值后会自动赋当前页为初始值1；一开始就加载好页面
         })
-        function load(cid,currentPage){
+
+        function load(cid,currentPage,rname){
             //发送ajax请求
-            $.get("route/pageQuery",{cid:cid,currentPage:currentPage},function(pb){
+            $.get("route/pageQuery",{cid:cid,currentPage:currentPage,rname:rname},function(pb){
                 //1、分页工具条展示
                 $("#totalPage").html(pb.totalPage); //总页码
                 $("#totalCount").html(pb.totalCount); //总记录数
 
                 var lis='';
-                var firstPage = '<li onclick="javascript:load('+cid+')"><a href="javascript:void(0)">首页</a></li>'
+                //javascript:load(6,1,\'西安\')  需要在字符串前后加上转义字符
+                var firstPage = '<li onclick="javascript:load('+cid+',1,\''+rname+'\')"><a href="javascript:void(0)">首页</a></li>'
                 //计算上一页的页码
                 var beforeNum = pb.currentPage-1;
                 if(beforeNum <= 0){
                     beforeNum = 1 ;
                 }
-                var beforePage = '<li onclick="javascript:load('+cid+','+beforeNum+')" class="threeword"><a href="javascript:void(0)">上一页</a></li>';
+                var beforePage = '<li onclick="javascript:load('+cid+','+beforeNum+',\''+rname+'\')" class="threeword"><a href="javascript:void(0)">上一页</a></li>';
                 lis += firstPage + beforePage;
 
                 //保证分页条一次只显示10个页码
@@ -54,9 +65,9 @@
                     //for(var i = 1 ; i <= pb.totalPage ; i++) { //展示分页页码
                     var li ;
                     if(pb.currentPage == i){ //如果是当前页码，则给选中样式
-                        li = '<li onclick="javascript:load('+cid+','+i+')" class="curPage"><a href="javascript:void(0)">'+i+'</a></li>';
+                        li = '<li onclick="javascript:load('+cid+','+i+',\''+rname+'\')" class="curPage"><a href="javascript:void(0)">'+i+'</a></li>';
                     }else{
-                        li = '<li onclick="javascript:load('+cid+','+i+')"><a href="javascript:void(0)">'+i+'</a></li>';
+                        li = '<li onclick="javascript:load('+cid+','+i+',\''+rname+'\')"><a href="javascript:void(0)">'+i+'</a></li>';
                     }
                     lis += li;
                 }
@@ -66,8 +77,8 @@
                 if(pb.currentPage == pb.totalPage){
                     nextNum = pb.currentPage;
                 }
-                var nextPage = '<li class="threeword" onclick="javascript:load('+cid+','+nextNum+')"><a href="javascript:;">下一页</a></li>';
-                var lastPage = '<li class="threeword" onclick="javascript:load('+cid+','+pb.totalPage+')"><a href="javascript:;">末页</a>';
+                var nextPage = '<li class="threeword" onclick="javascript:load('+cid+','+nextNum+',\''+rname+'\')"><a href="javascript:;">下一页</a></li>';
+                var lastPage = '<li class="threeword" onclick="javascript:load('+cid+','+pb.totalPage+',\''+rname+'\')"><a href="javascript:;">末页</a></li>';
                 lis += nextPage + lastPage;
 
                 $("#page_ul").html(lis);

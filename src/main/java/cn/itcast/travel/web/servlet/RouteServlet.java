@@ -23,6 +23,10 @@ public class RouteServlet extends BaseServlet {
         String pageSizeStr = request.getParameter("pageSize"); //每页显示条数
         String cidStr = request.getParameter("cid"); //类别的cid
 
+        String rname = request.getParameter("rname"); //接受rname线路名称
+        rname = new String(rname.getBytes("iso-8859-1"), "utf-8"); //tomcat8就会自动处理乱码问题，这里用的是tomcat7，因此手动更改编码
+
+
         //2、处理参数，转换为数据类型
         int currentPage = 0;
         if(currentPageStr != null && currentPageStr.length() > 0){
@@ -38,13 +42,13 @@ public class RouteServlet extends BaseServlet {
             pageSize = 5 ; //如果前台没有传递参数，则默认每页显示条数为5
         }
 
-        int cid = 0;
-        if(cidStr != null && cidStr.length() > 0){
+        int cid = 0; //当没有点击导航栏直接搜索时，会出现?cid=null&rname=西安，cid传入null字符串，导致出现空指针，因为"null"!=null，因此光判断cidStr!=null，无法过滤掉
+        if(cidStr != null && cidStr.length() > 0 && !"null".equalsIgnoreCase(cidStr)){
             cid = Integer.parseInt(cidStr);
         }
 
         //3、调用service层方法查询PageBean对象
-        PageBean<Route> pb = service.pageQuery(cid,currentPage,pageSize);
+        PageBean<Route> pb = service.pageQuery(cid,currentPage,pageSize,rname);
 
         //4、将PageBean对象序列化为json，返回客户端
         writeValue(pb,response); //调用BaseServlet封装的方法
