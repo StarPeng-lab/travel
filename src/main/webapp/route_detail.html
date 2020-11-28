@@ -112,8 +112,8 @@
         $('.up_img').on('click',function(){
             var num = $('.little_img').length;
             if(picindex > 0){
-                $('.little_img:eq('+(nextindex-1)+')').hide();
                 $('.little_img:eq('+(picindex-1)+')').show();
+                $('.little_img:eq('+(nextindex-1)+')').hide();
                 picindex = picindex - 1;
                 nextindex = nextindex - 1;
             }
@@ -163,9 +163,15 @@
             var ddStr = ' <a class="up_img up_img_disable"></a>'; //向上点击按钮
 
             for(var i = 0 ; i < route.routeImgList.length ; i++){
-                var aStr = '<a title="" class="little_img" data-bigpic="'+route.routeImgList[i].bigPic+'">\n' +
-            '                <img src="'+route.routeImgList[i].smallPic+'">\n' +
-            '                </a>'
+                if(i >= 4) {//隐藏多余图片，点击向下按钮，会触发事件显示
+                    var aStr = '<a title="" class="little_img" style="display: none;" data-bigpic="' + route.routeImgList[i].bigPic + '">\n' +
+                        '                <img src="' + route.routeImgList[i].smallPic + '">\n' +
+                        '                </a>'
+                }else{ //无需隐藏，一次显示4个以下的小图片
+                    var aStr = '<a title="" class="little_img" data-bigpic="' + route.routeImgList[i].bigPic + '">\n' +
+                        '                <img src="' + route.routeImgList[i].smallPic + '">\n' +
+                        '                </a>'
+                }
                 ddStr += aStr;
             }
 
@@ -174,7 +180,7 @@
 
             $("#image_big").attr("src",route.routeImgList[0].bigPic); //图片一从后台响应回前台，就把第一张大图放在#image_big中，之后点击其他小图，会触发事件转为大图
 
-            //goImg(); //图片展示和切换，可以再加上这句，使得加载完页面后，从ajax请求中返回了图片信息，再调用此方法
+            goImg(); //图片展示和切换，加载完页面后，从ajax请求中返回了图片信息，需要再调用一次此方法，不然像图片切换的事件会加载不过来
         });
     });
     </script>
