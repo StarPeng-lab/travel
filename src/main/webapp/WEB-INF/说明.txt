@@ -1,4 +1,4 @@
- (一)用户模块：注册、激活、登录、退出
+ (一)用户模块UserServlet：注册、激活、登录、退出
  1、异步提交表单：
 为了获取服务器响应的数据；
 由于web视图层采用html展示页面，而不是jsp，
@@ -29,7 +29,7 @@ session中存储了user对象，即表明用户登录；在LoginServlet.java中�
        即通过request.getRequestURI()获得访问路径，并截取字符串获取方法名，之后调用反射获得方法对象并执行方法，即可实现
        (有点框架的感觉了)
 
-(二)分类数据模块
+(二)分类数据模块CategoryServlet
  分类数据展示：在header.html窗口中，用js和jq在函数中拼接li，将tab_category表的数据展示出来
     优化：由于每次页面加载后，都要请求category/findAll的findAll方法，重新请求数据库，对数据库的压力较大，
          而分类的数据一般是不会变动的，因此采用对分类数据缓存优化，redis
@@ -38,7 +38,7 @@ session中存储了user对象，即表明用户登录；在LoginServlet.java中�
        不为空：不是第一次访问，直接返回集合；
     排序：期望按数据库中的顺序取数，使用sortedsort排序查询
 
-(三)旅游路线模块
+(三)旅游路线模块RouteServlet
 由于前台页面都是html，无法像jsp那样通过el表达式和jstl，与后台交互数据，而是前台发送ajax请求到后台，后台发回json数据进行交互
 因此，像分页的页码等信息，以及搜索功能，都是通过ajax请求，将前台参数包裹在访问路径后,即【?参数名=参数值&参数名=参数值】,要么把这个值写在跳转链接里，要么写在$.get("",{},回调函数) 中
 当然，像注册页面，登录页面，可以直接用表单form传值，后台用request对象的方法接收，如：request.getParameter(String id_name)
@@ -47,4 +47,7 @@ session中存储了user对象，即表明用户登录；在LoginServlet.java中�
  按照类别表中的cid，不同的cid查询不同的数据返回
  2、旅游线路搜索功能：
  模糊查询，返回分页对象 ； 注意 没有rname时，以及没有cid时，是否添加到sql的where子句的判断条件
+ 3、旅游路线详情页
+ RouteService.java中，需要查询RouteDao，RouteImgDao,SellerDao类，即查询路线表、路线图片表、店家信息表
+ 并把查到的信息存入route对象，返回给RouteServlet.java，再转换为json后返回浏览器
 
