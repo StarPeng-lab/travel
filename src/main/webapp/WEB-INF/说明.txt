@@ -50,4 +50,15 @@ session中存储了user对象，即表明用户登录；在LoginServlet.java中�
  3、旅游路线详情页
  RouteService.java中，需要查询RouteDao，RouteImgDao,SellerDao类，即查询路线表、路线图片表、店家信息表
  并把查到的信息存入route对象，返回给RouteServlet.java，再转换为json后返回浏览器
+ 4、旅游线路收藏
+ 添加收藏、检查是否被收藏、按钮样式变化、收藏人数统计
+ 按钮点击事件中，套用了多层ajax请求，而不用location.reload()，这样就不用点击按钮后整个页面刷新，造成用户体验不好
+
+ route_list.html:
+ location.search; //获得浏览器访问路径中?后的所有内容,例：?cid=6 截取到 6 ； ?cid=6&rname= 截取到 6&rname
+ var cid = search.split("=")[1]; //截取到6*/
+
+ register.html:
+ ajax请求参数中，发送给后台的json数据：$("form").serialze()，转为 key=value&key=value&... 形式
+ 提交数据写为$("#registerForm").serialize()，通过表单对象调用的submit()
 
