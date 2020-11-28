@@ -45,3 +45,6 @@ session中存储了user对象，即表明用户登录；在LoginServlet.java中�
  1、分页
  定义分页对象，让数据分页显示: 将数据封装到PageBean类中，组合类PageBean和Route
  按照类别表中的cid，不同的cid查询不同的数据返回
+ 2、旅游线路搜索功能：
+ 模糊查询，返回分页对象 ； 注意 没有rname时，以及没有cid时，是否添加到sql的where子句的判断条件
+
