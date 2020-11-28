@@ -20,4 +20,11 @@ public interface RouteDao {
      * @return
      */
     public List<Route> findByPage(int cid , int start , int pageSize , String rname);
+
+    /**
+     * 根据线路rid查询route对象，即旅游线路的详细信息
+     * @param rid
+     * @return
+     */
+    public Route findOne(int rid);
 }

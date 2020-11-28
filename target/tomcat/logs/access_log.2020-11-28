@@ -840,3 +840,6 @@
 0:0:0:0:0:0:0:1 - - [28/Nov/2020:15:20:26 +0800] "GET /travel/category/findAll HTTP/1.1" 200 247 http-bio-80-exec-1 4
 0:0:0:0:0:0:0:1 - - [28/Nov/2020:15:20:28 +0800] "GET /travel/route/pageQuery?cid=5&currentPage=2&rname=%E6%98%A5%E8%8A%82 HTTP/1.1" 200 3267 http-bio-80-exec-1 11
 0:0:0:0:0:0:0:1 - - [28/Nov/2020:15:20:30 +0800] "GET /travel/route/pageQuery?cid=5&currentPage=32&rname=%E6%98%A5%E8%8A%82 HTTP/1.1" 200 1249 http-bio-80-exec-1 11
+0:0:0:0:0:0:0:1 - - [28/Nov/2020:18:26:13 +0800] "GET /travel/route/findOne HTTP/1.1" 200 - http-bio-80-exec-1 94
+0:0:0:0:0:0:0:1 - - [28/Nov/2020:18:27:34 +0800] "GET /travel/route/findOne?rid=1 HTTP/1.1" 200 - http-bio-80-exec-3 595
+0:0:0:0:0:0:0:1 - - [28/Nov/2020:18:27:39 +0800] "GET /travel/route/findOne?rid=5 HTTP/1.1" 200 - http-bio-80-exec-4 17

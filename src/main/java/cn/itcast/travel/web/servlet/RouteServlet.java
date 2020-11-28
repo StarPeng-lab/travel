@@ -7,7 +7,6 @@ import cn.itcast.travel.service.impl.RouteServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -15,7 +14,7 @@ import java.io.IOException;
 @WebServlet("/route/*")
 public class RouteServlet extends BaseServlet {
 
-    private RouteService service = new RouteServiceImpl();
+    private RouteService routeService = new RouteServiceImpl();
 
     public void pageQuery(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1、接收参数
@@ -48,12 +47,26 @@ public class RouteServlet extends BaseServlet {
         }
 
         //3、调用service层方法查询PageBean对象
-        PageBean<Route> pb = service.pageQuery(cid,currentPage,pageSize,rname);
+        PageBean<Route> pb = routeService.pageQuery(cid,currentPage,pageSize,rname);
 
         //4、将PageBean对象序列化为json，返回客户端
         writeValue(pb,response); //调用BaseServlet封装的方法
 
 
+    }
+
+    /**
+     * 根据rid(线路id)查询一个旅游线路的详细信息
+     * @param request
+     * @param response
+     */
+    public void findOne(HttpServletRequest request , HttpServletResponse response) throws ServletException, IOException{
+        //1、接收rid
+        String rid = request.getParameter("rid");
+        //2、调用service层方法查询，并返回route对象
+        Route route = routeService.findOne(rid);
+        //3、将route对象序列化为json，返回给客户端
+        writeValue(route,response);
     }
 
 }
