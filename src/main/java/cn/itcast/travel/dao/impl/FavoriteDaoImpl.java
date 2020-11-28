@@ -7,6 +7,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.Date;
+
 public class FavoriteDaoImpl implements FavoriteDao {
 
     JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
@@ -21,5 +23,17 @@ public class FavoriteDaoImpl implements FavoriteDao {
             e.printStackTrace();
         }
         return favorite;
+    }
+
+    @Override
+    public int findCountByRid(int rid) {
+        String sql = "select count(*) from tab_favorite where rid = ? ";
+        return template.queryForObject(sql,Integer.class,rid);
+    }
+
+    @Override
+    public void add(int rid, int uid) {
+        String sql = "insert into tab_favorite(rid,date,uid) values(?,?,?)";
+        template.update(sql,rid,new Date(),uid);
     }
 }

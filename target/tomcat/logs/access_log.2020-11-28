@@ -1663,3 +1663,5 @@
 0:0:0:0:0:0:0:1 - - [28/Nov/2020:20:29:13 +0800] "GET /travel/route/findOne?rid=31 HTTP/1.1" 200 1896 http-bio-80-exec-13 5
 0:0:0:0:0:0:0:1 - - [28/Nov/2020:20:29:13 +0800] "GET /travel/user/findOne HTTP/1.1" 200 4 http-bio-80-exec-13 2
 0:0:0:0:0:0:0:1 - - [28/Nov/2020:20:29:17 +0800] "GET /travel/img/product/size4/m46e65da7aaabb0e8e29ddd56f9f79cbe8.jpg HTTP/1.1" 200 52149 http-bio-80-exec-13 12
+0:0:0:0:0:0:0:1 - - [28/Nov/2020:21:10:53 +0800] "GET /travel/route/isFavorite HTTP/1.1" 200 5 http-bio-80-exec-2 686
+0:0:0:0:0:0:0:1 - - [28/Nov/2020:21:11:41 +0800] "GET /travel/route/isFavorite?rid=1 HTTP/1.1" 200 5 http-bio-80-exec-3 15

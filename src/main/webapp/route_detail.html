@@ -40,10 +40,10 @@
                 <div class="pros_price">
                     <p class="price"><strong id="price"></strong><span>起</span></p>
                     <p class="collect">
-                        <a class="btn"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
+                        <a class="btn" id="favorite" onclick="addFavorite();"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
 
-                        <a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>点击收藏</a>
-                        <span>已收藏100次</span>
+                      <!--  <a  class="btn already" disabled="disabled"><i class="glyphicon glyphicon-heart-empty"></i>已收藏</a>-->
+                        <span id="favorite_count"></span>
                     </p>
                 </div>        
             </div>
@@ -85,7 +85,7 @@
     <script>
     $(document).ready(function() {
         goImg(); //焦点图效果
-        // var timer = setInterval("auto_play()", 5000); //自动播放
+        var timer = setInterval("auto_play()", 2000); //自动播放
     });
 
     //焦点图效果
@@ -158,6 +158,7 @@
             $("#sname").html(route.seller.sname);
             $("#consphone").html(route.seller.consphone);
             $("#address").html(route.seller.address);
+            $("#favorite_count").html("被"+route.count+"人心悦啦");
 
             //图片展示
             var ddStr = ' <a class="up_img up_img_disable"></a>'; //向上点击按钮
@@ -183,6 +184,47 @@
             goImg(); //图片展示和切换，加载完页面后，从ajax请求中返回了图片信息，需要再调用一次此方法，不然像图片切换的事件会加载不过来
         });
     });
+
+    $(function(){
+        var rid = getParameter("rid");
+        $.get("route/isFavorite",{rid:rid},function(flag){
+            if(flag) { //已收藏
+                $("#favorite").html("<i class=\"glyphicon glyphicon-heart-empty\"></i>已收藏");
+                $("#favorite").addClass("already");
+                $("#favorite").attr("disabled","disabled"); //设置自定义属性
+
+                $("#favorite").removeAttr(onclick); //移除收藏点击属性
+            }
+        });
+    });
+
+    //添加收藏
+    function addFavorite(){
+        var rid = getParameter("rid");
+        //判断用户是否登录
+        $.get("user/findOne",{},function(user){
+            if(user){ //登录
+                $.get("route/addFavorite",{rid:rid},function(){
+                    // location.reload(); //重新加载页面
+                    $.get("route/isFavorite",{rid:rid},function(flag){
+                        if(flag) { //已收藏
+                            $("#favorite").html("<i class=\"glyphicon glyphicon-heart-empty\"></i>已收藏");
+                            $("#favorite").addClass("already");
+                            $("#favorite").attr("disabled","disabled"); //设置自定义属性
+                            $("#favorite").removeAttr(onclick); //移除收藏点击属性
+                        }
+                        $.get("route/findOne",{rid:rid},function (route) {
+                            $("#favorite_count").html("被"+route.count+"人心悦啦");
+                        });
+                    });
+                });
+
+            }else{ //未登录
+                alert("您尚未登录，请登录");
+                location.href="http://localhost/travel/login.html";
+            }
+        });
+    }
     </script>
 </body>
 
