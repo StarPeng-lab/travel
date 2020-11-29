@@ -19,7 +19,7 @@ public class CategoryServlet extends BaseServlet {
     private CategoryService service = new CategoryServiceImpl();
 
     /**
-     * 查询所有
+     * 查询所有旅游路线
      * @param request
      * @param response
      * @throws ServletException
