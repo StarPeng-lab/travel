@@ -123,7 +123,7 @@
 
     <build>
         <!-- 最后打包的包名 -->
-        <finalName>travel</finalName>
+        <finalName>ROOT</finalName>
         <!--maven插件-->
         <plugins>
             <!--jdk编译插件-->
